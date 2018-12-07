@@ -23,7 +23,7 @@
 		{
 			margin: 10px;
 		}
-		#no-link-content
+		#no-link-content, #css-selector-content
 		{
 		   min-width:420px;
 		   min-height:70px;
@@ -43,7 +43,7 @@
 </head>
 <body>
 <span style="float:right; margin-right: 15px;margin-top: 2px;">
-	<small><a class='link' href="https://chrome.google.com/webstore/detail/batch-save-pocket/ihhiomekhplpdojbcaniaglcfopckaef/reviews">Review</a></small>
+	<small><a class='link' href="https://chrome.google.com/webstore/detail/batch-save-pocket/ihhiomekhplpdojbcaniaglcfopckaef/reviews">Review update from Tue 01</a></small>
 	<big> | </big>
 	<small><a class='link' href="https://www.facebook.com/sharer/sharer.php?u=https://chrome.google.com/webstore/detail/batch-save-pocket/ihhiomekhplpdojbcaniaglcfopckaef">Share on FB</a></small>
 	<big> | </big>
@@ -58,6 +58,7 @@
 <div id="tab-bar" class="toggable">
 	<ul class="nav nav-tabs">
 	  <li role="presentation" class="active"><a href="#no-link-content" data-toggle="tab">Current</a></li>
+		<li role="presentation"><a href="#css-selector-content" data-toggle="tab">Css Selectors</a></li>
 	  <li role="presentation"><a href="#paste" data-toggle="tab">Paste Links</a></li>
 	</ul>
 </div>
@@ -68,6 +69,15 @@
 	        <button type="button" class="btn btn-success" id = "parse-links">Parse</button>
 		</div>
 		<p id="paste-error" class="bg-danger status"></p>
+	</div>
+	<div id="css-selector-content" class="tab-pane">
+		<p align="center">Please input the css selector syntax</p>
+		<div class="input-group">
+			<input type="text" class="form-control" id = "css-selector" value="h3.title a" placeholder='Put selectors here (comma seperated)'>
+			<span class="input-group-btn">
+			   <button type="button" class="btn btn-success" id = "verify-selector-button">Verify</button>
+			</span>
+		</div>
 	</div>
 	<div id="no-link-content" class="tab-pane active">
 			<p align="center">You haven't selected any links. Submit current page to Pocket?</p>
