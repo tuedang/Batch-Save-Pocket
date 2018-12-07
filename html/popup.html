@@ -70,8 +70,17 @@
 		</div>
 		<p id="paste-error" class="bg-danger status"></p>
 	</div>
-	<div id="css-selector-content" class="tab-pane">
-		<p align="center">Please input the css selector syntax</p>
+	<div id="css-selector-content" class="tab-pane active">
+		<p align="center">
+			<span>
+				<small><a class='link' href="#" data="article a.ds-link, .postArticle-content a">Medium</a></small>
+				<strong> | </strong>
+				<small><a class='link' href="#" data="h3.title a">Spiderum</a></small>
+				<strong> | </strong>
+				<small><a class='link' href="#" data="123">Tinhte</a></small>
+			</span>
+			<span>Please input the css selector syntax</span>
+		</p>
 		<div class="input-group">
 			<input type="text" class="form-control" id = "css-selector" value="h3.title a" placeholder='Put selectors here (comma seperated)'>
 			<span class="input-group-btn">
@@ -79,7 +88,7 @@
 			</span>
 		</div>
 	</div>
-	<div id="no-link-content" class="tab-pane active">
+	<div id="no-link-content" class="tab-pane">
 			<p align="center">You haven't selected any links. Submit current page to Pocket?</p>
 	        <div class="input-group">
 	            <input type="text" class="form-control" id = "single-tag" placeholder='Tags (optional, comma seperated)'>

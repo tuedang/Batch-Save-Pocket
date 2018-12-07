@@ -126,5 +126,10 @@
                 buildLinks(request);
             });
         $('#verify-selector-button').click(parseLinkFromSelector);
+
+        $('#css-selector-content .link').click(function(e) {
+            $('#css-selector').val($(this).attr('data'));
+            return false;
+        });
     });
 })();
