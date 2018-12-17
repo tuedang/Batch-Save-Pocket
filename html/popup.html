@@ -39,6 +39,10 @@
 		{
 			margin: 8px;
 		}
+		#css-selector-content .active {
+			color: RED;
+			font-weight: bold;
+		}
 	</style>
 </head>
 <body>
@@ -70,21 +74,23 @@
 		</div>
 		<p id="paste-error" class="bg-danger status"></p>
 	</div>
-	<div id="css-selector-content" class="tab-pane active">
+	<div id="css-selector-content" class="tab-pane active toggable" data-toggle="active">
 		<p align="center">
-			<span>
-				<small><a class='link' href="#" data="article a.ds-link, .postArticle-content a">Medium</a></small>
-				<strong> | </strong>
-				<small><a class='link' href="#" data="h3.title a">Spiderum</a></small>
-				<strong> | </strong>
-				<small><a class='link' href="#" data=".list-diff-book a">Tramdoc</a></small>
-				<strong> | </strong>
-				<small><a class='link' href="#" data="123">Tinhte</a></small>
-			</span>
 			<span>Please input the css selector syntax</span>
+			<br/>
+			<span>
+				<small><a class='link' href="#" data="body a[href]">All</a></small>
+				<strong> | </strong>
+				<small><a class='link' href="#" data="article a.ds-link, .postArticle-content a" domain="medium.com">Medium</a></small>
+				<strong> | </strong>
+				<small><a class='link' href="#" data="h3.title a" domain="spiderum.com">Spiderum</a></small>
+				<strong> | </strong>
+				<small><a class='link' href="#" data=".list-diff-book a" domain="tramdoc.vn">Tramdoc</a></small>
+				<strong> | </strong>
+			</span>
 		</p>
 		<div class="input-group">
-			<input type="text" class="form-control" id = "css-selector" value="h3.title a" placeholder='Put selectors here (comma seperated)'>
+			<input type="text" class="form-control" id = "css-selector" value="" placeholder='Put selectors here (comma seperated)'>
 			<span class="input-group-btn">
 			   <button type="button" class="btn btn-success" id = "verify-selector-button">Verify</button>
 			</span>

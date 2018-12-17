@@ -106,6 +106,8 @@
 
     $(document).ready(function()
     {
+        var globalParam={};
+
         if(!Auth.isAuthenticated())
         {
             Auth.authenticate();
@@ -124,11 +126,26 @@
         chrome.runtime.onMessage.addListener(
             function(request, sender, sendResponse) {
                 buildLinks(request);
-            });
-        $('#verify-selector-button').click(parseLinkFromSelector);
+        });
 
+        chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+            var url = tabs[0].url;
+            globalParam['url'] = url;
+
+            var domain = url.split("/")[2];
+
+            $('#css-selector-content .link[domain="' + domain + '"]').click();
+        });
+
+        $('#verify-selector-button').click(() => {
+            parseLinkFromSelector();
+        });
+
+        var domainLinks = $('#css-selector-content .link');
         $('#css-selector-content .link').click(function(e) {
+            domainLinks.removeClass('active');
             $('#css-selector').val($(this).attr('data'));
+            $(this).toggleClass("active");
             return false;
         });
     });
