@@ -9,23 +9,19 @@
         var titles = [];
         var urls = [];
         for (var i = 0; i < links.length; i++) {
-            if (links[i].href.length === 0) {
+            let link = links[i];
+            if (link.href.length === 0) {
                 continue;
             }
-            urls.push(links[i].href.trim());
-            titles.push(links[i].innerText.replace(/"/g, '&quot;').trim());
+            urls.push(link.href.trim());
+            titles.push(link.innerText.replace(/"/g, '&quot;').trim());
         }
         return {"urls": urls, "titles": titles};
     }
 
     (function sendLinksMessage() {
         BodyCopy = document.body.cloneNode(true);
-        var selection = document.body;
-        var div = document.createElement('div');
-        div.appendChild(selection);
-        var vs = div.innerHTML;
-        var req = getLinks(selector, vs);
-        //console.log(req);
+        var req = getLinks(selector, BodyCopy.innerHTML);
         if (req.urls.length > 0) {
             chrome.runtime.sendMessage(req);
         }
