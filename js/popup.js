@@ -7,6 +7,8 @@
         $('#link-content').show();
         var checkbox = '<input type="checkbox" checked>';
         var tag_input = '<input type = "text" style = "max-width:150px">';
+
+        $('#mytable > tbody').empty();
         for (var i=0; i<urls.length; i++) {
             var url = urls[i];
             var title_input = '<input type = "text" style = "max-width:150px" value = "'+ titles[i] +'">';
@@ -15,7 +17,7 @@
             $('#mytable > tbody').append(str);
         }
 
-        $('.toggable').hide();
+        //$('.toggable').hide();
         $('#link-content').show();
     }
     function single_submit_handler()
@@ -44,20 +46,21 @@
         var common_tags = $('#common-tags').val();
         var actions = [];
         var unix_timestamp = Math.round((new Date()).getTime() / 1000);
-        $('input:checkbox:checked').each(function(index)
-        {
+        $('input:checkbox:checked').each(function(index) {
             var title = $(this).parent().next();
             var link = title.next();
             var tags = link.next()[0].children[0].value; //somehow can't get jquery to work here, so had to use pure js
             //var tags = link.nextSibling;
             title = title.text();
             link = link.text();
-            if(common_tags.length > 0)
-            {
-                tags = tags + ',' + common_tags;
+            if(common_tags.length > 0) {
+                if (tags) {
+                    tags = tags + ',' + common_tags;
+                } else {
+                    tags = common_tags;
+                }
             }
-            var row =
-            {
+            var row = {
                 "tags" : tags,
                 "title" : title,
                 "url" : link,
@@ -104,9 +107,7 @@
         });
     }
 
-    $(document).ready(function()
-    {
-        var globalParam={};
+    $(document).ready(function() {
 
         if(!Auth.isAuthenticated())
         {
@@ -130,11 +131,14 @@
 
         chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
             var url = tabs[0].url;
-            globalParam['url'] = url;
 
             var domain = url.split("/")[2];
 
-            $('#css-selector-content .link[domain="' + domain + '"]').click();
+            var $detectedDomain = $('#css-selector-content .link[domain="' + domain + '"]');
+            if ($detectedDomain.length === 1) {
+                $detectedDomain.click();
+                parseLinkFromSelector();
+            }
         });
 
         $('#verify-selector-button').click(() => {
