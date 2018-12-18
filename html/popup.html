@@ -43,6 +43,14 @@
 			color: RED;
 			font-weight: bold;
 		}
+
+		#css-selector-content span small:after
+		{
+			content: "|";
+			font-size: 1.2em;
+			font-weight: bold;
+			margin-left: 0.4em;
+		}
 	</style>
 </head>
 <body>
@@ -80,15 +88,11 @@
 			<br/>
 			<span>
 				<small><a class='link' href="#" data="body a[href]">All</a></small>
-				<strong> | </strong>
 				<small><a class='link' href="#" data="article a.ds-link, .postArticle-content a" domain="medium.com">Medium</a></small>
-				<strong> | </strong>
 				<small><a class='link' href="#" data="h3.title a" domain="spiderum.com">Spiderum</a></small>
-				<strong> | </strong>
 				<small><a class='link' href="#" data=".list-diff-book a, #content #news_title a" domain="tramdoc.vn">Tramdoc</a></small>
-				<strong> | </strong>
 				<small><a class='link' href="#" data=".container .post-feed-item a.link" domain="viblo.asia">Viblo</a></small>
-				<strong> | </strong>
+				<small><a class='link' href="#" data=".content .book-navigation .menu a" domain="gacsach.com">Gácsách</a></small>
 			</span>
 		</p>
 		<div class="input-group">
