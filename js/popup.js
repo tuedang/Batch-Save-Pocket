@@ -1,20 +1,29 @@
 (function()
 {
+    var rowTemplate = `
+        <tr>
+            <td>{{index}}</td>
+            <td><input type="checkbox" checked /></td>
+            <td><input type = "text" style = "max-width:150px" value = "{{title}}"/></td>
+            <td><a href = '{{url}}' target='_blank'>{{url}}</a></td>
+            <!--<td><input type = "text" style = "max-width:150px"/></td>-->
+        </tr>
+    `;
+
     function buildLinks(links) {
         var urls = links.urls;
         var titles = links.titles;
         $('#no-link-content').hide();
         $('#link-content').show();
-        var checkbox = '<input type="checkbox" checked>';
-        var tag_input = '<input type = "text" style = "max-width:150px">';
 
-        $('#mytable > tbody').empty();
-        for (var i=0; i<urls.length; i++) {
-            var url = urls[i];
-            var title_input = '<input type = "text" style = "max-width:150px" value = "'+ titles[i] +'">';
-            var str = "<tr><td>" + (i+1) + "</td>" + "<td>" + checkbox +"</td>" +"<td>"+title_input+"</td>" +
-                "<td><a href = '" + url + "' target='_blank' >"  + url + "</a></td><td>" + tag_input + "</td></tr>";
-            $('#mytable > tbody').append(str);
+        $tableBody = $('#mytable > tbody');
+        $tableBody.empty();
+        for (var i = 0; i < urls.length; i++) {
+            let rowContent = rowTemplate
+                .replace(/{{index}}/g, i)
+                .replace(/{{url}}/g, urls[i])
+                .replace(/{{title}}/g, titles[i]);
+            $tableBody.append(rowContent);
         }
 
         //$('.toggable').hide();
@@ -49,7 +58,7 @@
         $('input:checkbox:checked').each(function(index) {
             var title = $(this).parent().next();
             var link = title.next();
-            var tags = link.next()[0].children[0].value; //somehow can't get jquery to work here, so had to use pure js
+            var tags = '';//disable //link.next()[0].children[0].value;
             //var tags = link.nextSibling;
             title = title.text();
             link = link.text();
@@ -151,6 +160,11 @@
             $('#css-selector').val($(this).attr('data'));
             $(this).toggleClass("active");
             return false;
+        });
+
+        $('#mytable #allcheck').click(function (e) {
+            var checked = $(this).is(":checked");
+            $('#mytable input[type="checkbox"]').prop('checked', checked);
         });
     });
 })();
